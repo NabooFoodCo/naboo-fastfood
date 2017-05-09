@@ -1,127 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Admin Page</title>
-        <link rel="stylesheet" type="text/css" href="css/admin-page.css" />
-    </head>
-    <body>
-        <button id="logoutButton">Log out</button>
-        <div id="headerDiv">
-            <div id="upperDiv">
-                <button id="openStoreButton">Open Store</button>
-                <h1 id="employeeName">EMPLOYEE</h1>
-                <button id="closeStoreButton">Close Store</button>
-            </div>
-
-            <div id="lowerDiv">
-                <h1 id="employeeId">EMP001</h1>
-            </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Page</title>
+    <link rel="stylesheet" type="text/css" href="css/admin-page.css" />
+</head>
+<body>
+    <button id="logoutButton">Log out</button>
+    <div id="headerDiv">
+        <div id="upperDiv">
+            <button id="openStoreButton">Open Store</button>
+            <h1 id="employeeName">EMPLOYEE</h1>
+            <button id="closeStoreButton">Close Store</button>
         </div>
 
-        <div id="leftContainerDiv">
-            <button id="checkSalesButton">CHECK SALES</button>
-            <div id="itemsDiv">
-                <h2 id="manageItems">MANAGE ITEMS</h2>
-                <button id="addItemButton" class="itemButtons">ADD ITEM</button>
-                <button id="removeItemButton" class="itemButtons">REMOVE ITEM</button>
-                <button id="editItemButton" class="itemButtons">EDIT ITEM</button>
-            </div>
+        <div id="lowerDiv">
+            <h1 id="employeeId">EMP001</h1>
+        </div>
+    </div>
 
-            <div id="employeeDiv">
-                <h3 id="manageEmployees">MANAGE EMPLOYEES</h3>
-                <button id="addEmployeeButton" class="employeeButtons">ADD EMPLOYEE</button>
-                <button id="removeEmployeeButton" class="employeeButtons">REMOVE EMPLOYEE</button>
-                <button id="editEmployeeButton" class="employeeButtons">EDIT EMPLOYEE</button>
-            </div>
+    <div id="leftContainerDiv">
+        <button id="checkSalesButton">CHECK SALES</button>
+        <div id="itemsDiv">
+            <h2 id="manageItems">MANAGE ITEMS</h2>
+            <button id="addItemButton" class="itemButtons">ADD ITEM</button>
+            <button id="removeItemButton" class="itemButtons">REMOVE ITEM</button>
+            <button id="editItemButton" class="itemButtons">EDIT ITEM</button>
         </div>
 
-        <div id="addItemDiv">
-            <h1 id="addItemText">ADD ITEM</h1>
-
-            <h3 id="addItemNameLabel">Item Name:</h3>
-            <input type="text" id="addItemNameInput">
-
-            <h3 id="addItemPriceLabel">Item Price:</h3>
-            <input type="text" id="addItemPriceInput">
-
-            <button id="addItemSave">SAVE</button>
+        <div id="employeeDiv">
+            <h3 id="manageEmployees">MANAGE EMPLOYEES</h3>
+            <button id="addEmployeeButton" class="employeeButtons">ADD EMPLOYEE</button>
+            <button id="removeEmployeeButton" class="employeeButtons">REMOVE EMPLOYEE</button>
+            <button id="editEmployeeButton" class="employeeButtons">EDIT EMPLOYEE</button>
         </div>
+    </div>
 
-        <div id="removeItemDiv">
-            <h1 id="removeItemText">REMOVE ITEM</h1>
+    <div id="addItemDiv">
+        <h1 id="addItemText">ADD ITEM</h1>
 
-            <h3 id="removeItemNameLabel">Item Name:</h3>
-            <select id="removeItemList"></select>
+        <h3 id="addItemNameLabel">Item Name:</h3>
+        <input type="text" id="addItemNameInput">
 
-            <button id="removeItemSave">REMOVE</button>
-        </div>
+        <h3 id="addItemPriceLabel">Item Price:</h3>
+        <input type="text" id="addItemPriceInput">
 
-        <div id="editItemDiv">
-            <h1 id="editItemText">EDIT ITEM</h1>
+        <button id="addItemSave">SAVE</button>
+    </div>
 
-            <h3 id="selectItemLabel">Select Item:</h3>
-            <select id="editItemList"></select>
+    <div id="removeItemDiv">
+        <h1 id="removeItemText">REMOVE ITEM</h1>
 
-            <h3 id="editItemNameLabel">Item Name:</h3>
-            <input type="text" id="editItemNameInput">
+        <h3 id="removeItemNameLabel">Item Name:</h3>
+        <select id="removeItemList"></select>
 
-            <h3 id="editItemPriceLabel">Item Price:</h3>
-            <input type="text" id="editItemPriceInput">
+        <button id="removeItemSave">REMOVE</button>
+    </div>
 
-            <button id="editItemSave">SAVE</button>
-        </div>
+    <div id="editItemDiv">
+        <h1 id="editItemText">EDIT ITEM</h1>
 
-        <div id="addEmployeeDiv">
-            <h1 id="addEmployeeText">ADD EMPLOYEE</h1>
+        <h3 id="selectItemLabel">Select Item:</h3>
+        <select id="editItemList"></select>
 
-            <h3 id="addEmployeeNameLabel">Employee Name:</h3>
-            <input type="text" id="addEmployeeNameInput">
+        <h3 id="editItemNameLabel">Item Name:</h3>
+        <input type="text" id="editItemNameInput">
 
-            <h3 id="addEmployeeIdLabel">Employee ID:</h3>
-            <input type="text" id="addEmployeeIdInput">
+        <h3 id="editItemPriceLabel">Item Price:</h3>
+        <input type="text" id="editItemPriceInput">
 
-            <h3 id="selectPositionLabel">Position:</h3>
-            <select id="selectPositionList">
-                <option value="a">Admin</option>
-                <option value="c">Cook</option>
-            </select>
+        <button id="editItemSave">SAVE</button>
+    </div>
 
-            <h3 id="addEmployeePasswordLabel">Password:</h3>
-            <input type="password" id="addEmployeePasswordInput">
+    <div id="addEmployeeDiv">
+        <h1 id="addEmployeeText">ADD EMPLOYEE</h1>
 
-            <button id="addEmployeeSave">SAVE</button>
-        </div>
+        <h3 id="addEmployeeNameLabel">Employee Name:</h3>
+        <input type="text" id="addEmployeeNameInput">
 
-        <div id="removeEmployeeDiv">
-            <h1 id="removeEmployeeText">REMOVE EMPLOYEE</h1>
+        <h3 id="addEmployeeIdLabel">Employee ID:</h3>
+        <input type="text" id="addEmployeeIdInput">
 
-            <h3 id="removeSelectEmployeeLabel">Employee Name:</h3>
-            <select id="removeEmployeeList">
-            </select>
+        <h3 id="selectPositionLabel">Position:</h3>
+        <select id="selectPositionList">
+            <option value="a">Admin</option>
+            <option value="c">Cook</option>
+        </select>
 
-            <button id="removeEmployeeSave">REMOVE</button>
-        </div>
+        <h3 id="addEmployeePasswordLabel">Password:</h3>
+        <input type="password" id="addEmployeePasswordInput">
 
-        <div id="editEmployeeDiv">
-            <h1 id="editEmployeeText">EDIT EMPLOYEE</h1>
+        <button id="addEmployeeSave">SAVE</button>
+    </div>
 
-            <h3 id="editSelectEmployeeLabel">Employee:</h3>
-            <select id="editEmployeeList"></select>
+    <div id="removeEmployeeDiv">
+        <h1 id="removeEmployeeText">REMOVE EMPLOYEE</h1>
 
-            <h3 id="editEmployeeNameLabel">Employee Name:</h3>
-            <input type="text" id="editEmployeeNameInput">
+        <h3 id="removeSelectEmployeeLabel">Employee Name:</h3>
+        <select id="removeEmployeeList">
+        </select>
 
-            <h3 id="editEmployeeIdLabel">Employee ID:</h3>
-            <input type="text" id="editEmployeeIdInput">
+        <button id="removeEmployeeSave">REMOVE</button>
+    </div>
 
-            <h3 id="editEmployeePasswordLabel">Password:</h3>
-            <input type="password" id="editEmployeePasswordInput">
+    <div id="editEmployeeDiv">
+        <h1 id="editEmployeeText">EDIT EMPLOYEE</h1>
 
-            <button id="editEmployeeSave">SAVE</button>
+        <h3 id="editSelectEmployeeLabel">Employee:</h3>
+        <select id="editEmployeeList"></select>
 
-        </div>
+        <h3 id="editEmployeeNameLabel">Employee Name:</h3>
+        <input type="text" id="editEmployeeNameInput">
 
-        <script src='/scripts/adminbundle.js'></script>
-    </body>
+        <h3 id="editEmployeeIdLabel">Employee ID:</h3>
+        <input type="text" id="editEmployeeIdInput">
+
+        <h3 id="editEmployeePasswordLabel">Password:</h3>
+        <input type="password" id="editEmployeePasswordInput">
+
+        <button id="editEmployeeSave">SAVE</button>
+
+    </div>
+
+    <script src='/scripts/adminbundle.js'></script>
+</body>
 </html>
