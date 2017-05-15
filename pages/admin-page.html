@@ -5,122 +5,267 @@
     <title>Admin Page</title>
     <link rel="stylesheet" type="text/css" href="css/admin-page.css" />
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 <body>
-    <button id="logoutButton">Log out</button>
-    <div id="headerDiv">
-        <div id="upperDiv">
-            <button id="openStoreButton">Open Store</button>
-            <h1 id="employeeName">EMPLOYEE</h1>
-            <button id="closeStoreButton">Close Store</button>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin-page">Naboo</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage items <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                        <li><a id="addItemButton" >Add item</a></li>
+                        <li><a id="removeItemButton">Remove item</a></li>
+                        <li><a id="editItemButton">Edit item</a></li>
+                    </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Manage employees <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a id="addEmployeeButton">Add employee</a></li>
+                            <li><a id="removeEmployeeButton">Remove employee</a></li>
+                            <li><a id="editEmployeeButton">Edit employee</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <p class="navbar-text navbar-left" id="employeeName">EMPLOYEE</p>
+                    <button type="button" class="btn btn-default navbar-btn" id="logoutButton">Log out</button>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div id="adminSettingsDiv">
+        <h1 class="headerTexts">ADMIN PAGE</h1>
+        <div id="buttonContainer">
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="openStoreButton">Open Store</button>
+            <button type="button" class="btn btn-default btn-lg btn-block" id="closeStoreButton">Close Store</button>
         </div>
 
-        <div id="lowerDiv">
-            <h1 id="employeeId">EMP001</h1>
+    </div>
+
+    <div id="addItemDiv" class="displayDivs">
+        <h1 id="addItemText" class="headerTexts">ADD ITEM</h1>
+        <div class="bigContainer">
+            <div class="container">
+                <label id="addItemNameLabel" class="addItemLabels">Item Name:</label>
+                <input type="text" id="addItemNameInput" class="form-control">
+            </div>
+
+            <div class="container">
+                <label id="addItemPriceLabel" class="addItemLabels">Item Price:</label>
+                <input type="text" id="addItemPriceInput" class="form-control">
+            </div>
+
+            <div class="container">
+                <label id="addItemImgLabel" class="addItemLabels">Item Image URL:</label>
+                <input type="text" id="addItemImgInput" class="form-control">
+            </div>
+
+            <div class="container">
+                <label id="selectItemTypeLabel" class="addItemLabels">Item Type:</label>
+                <select id="selectItemTypeList" class="form-control">
+                    <option value="greens">Greens</option>
+                    <option value="meats">Meats</option>
+                    <option value="seafood">Seafood</option>
+                    <option value="bakedgoods">Baked Goods</option>
+                    <option value="m&b">Mollusks & Bugs</option>
+                    <option value="drinks">Drinks</option>
+                </select>
+            </div>
+
+            <button id="addItemSave" class="btn btn-default">SAVE</button>
+
+            <div class="alert alert-success alert-dismissible" role="alert" id="addItemSuccess" hidden>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have successfully added an item.
+            </div>
         </div>
     </div>
 
-    <div id="leftContainerDiv">
-        <button id="checkSalesButton">CHECK SALES</button>
-        <div id="itemsDiv">
-            <h2 id="manageItems">MANAGE ITEMS</h2>
-            <button id="addItemButton" class="itemButtons">ADD ITEM</button>
-            <button id="removeItemButton" class="itemButtons">REMOVE ITEM</button>
-            <button id="editItemButton" class="itemButtons">EDIT ITEM</button>
+    <div id="removeItemDiv"  class="displayDivs">
+        <h1 id="removeItemText" class="headerTexts">REMOVE ITEM</h1>
+        <div class="bigContainer">
+            <div class="container">
+                <label id="removeItemNameLabel">Item Name:</label>
+                <select id="removeItemList" class="form-control"></select>
+            </div>
+            <button class="btn btn-default" data-toggle="modal" data-target="#removeItemModal" id="removeItem">REMOVE</button>
+
+            <div class="alert alert-success alert-dismissible" role="alert" id="removeItemSuccess" hidden>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have successfully removed an item.
+            </div>
         </div>
+    </div>
 
-        <div id="employeeDiv">
-            <h3 id="manageEmployees">MANAGE EMPLOYEES</h3>
-            <button id="addEmployeeButton" class="employeeButtons">ADD EMPLOYEE</button>
-            <button id="removeEmployeeButton" class="employeeButtons">REMOVE EMPLOYEE</button>
-            <button id="editEmployeeButton" class="employeeButtons">EDIT EMPLOYEE</button>
+    <div id="editItemDiv"  class="displayDivs">
+        <h1 id="editItemText" class="headerTexts">EDIT ITEM</h1>
+
+        <div class="bigContainer">
+            <div class="container">
+                <label id="selectItemLabel" class="editItemLabels">Select Item:</label>
+                <select id="editItemList" class="form-control"></select>
+            </div>
+
+            <div class="container">
+                <label id="editItemNameLabel" class="editItemLabels">Item Name:</label>
+                <input type="text" id="editItemNameInput" class="form-control">
+            </div>
+
+            <div class="container">
+                <label id="editItemPriceLabel" class="editItemLabels">Item Price:</label>
+                <input type="text" id="editItemPriceInput" class="form-control">
+            </div>
+
+            <button id="editItemSave" class="btn btn-default">SAVE</button>
+            <div class="alert alert-success alert-dismissible" role="alert" id="editItemSuccess" hidden>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have successfully edited an item.
+            </div>
         </div>
     </div>
 
-    <div id="addItemDiv">
-        <h1 id="addItemText">ADD ITEM</h1>
+    <div id="addEmployeeDiv" class="displayDivs">
+        <h1 id="addEmployeeText" class="headerTexts">ADD EMPLOYEE</h1>
+        <div class="bigContainer">
+            <div class="container">
+                <label id="addEmployeeNameLabel" class="addEmployeeLabels">Employee Name:</label>
+                <input type="text" id="addEmployeeNameInput" class="form-control">
+            </div>
 
-        <h3 id="addItemNameLabel">Item Name:</h3>
-        <input type="text" id="addItemNameInput">
+            <div class="container">
+                <label id="addEmployeeIdLabel" class="addEmployeeLabels">Employee ID:</label>
+                <input type="text" id="addEmployeeIdInput" class="form-control">
+            </div>
 
-        <h3 id="addItemPriceLabel">Item Price:</h3>
-        <input type="text" id="addItemPriceInput">
+            <div class="container">
+                <label id="selectPositionLabel" class="addEmployeeLabels">Position:</label>
+                <select id="selectPositionList" class="form-control">
+                    <option value="a">Admin</option>
+                    <option value="c">Cook</option>
+                </select>
+            </div>
 
-        <button id="addItemSave">SAVE</button>
+            <div class="container">
+                <label id="addEmployeePasswordLabel" class="addEmployeeLabels">Password:</label>
+                <input type="password" id="addEmployeePasswordInput" class="form-control">
+            </div>
+            <button id="addEmployeeSave" class="btn btn-default">SAVE</button>
+
+            <div class="alert alert-success alert-dismissible" role="alert" id="addEmployeeSuccess" hidden>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have successfully added an employee.
+            </div>
+        </div>
     </div>
 
-    <div id="removeItemDiv">
-        <h1 id="removeItemText">REMOVE ITEM</h1>
+    <div id="removeEmployeeDiv"  class="displayDivs">
+        <h1 id="removeEmployeeText" class="headerTexts">REMOVE EMPLOYEE</h1>
 
-        <h3 id="removeItemNameLabel">Item Name:</h3>
-        <select id="removeItemList"></select>
+        <div class="bigContainer">
+            <div class="container">
+                <label id="removeSelectEmployeeLabel">Employee Name:</label>
+                <select id="removeEmployeeList" class="form-control"></select>
+            </div>
 
-        <button id="removeItemSave">REMOVE</button>
+            <button data-toggle="modal" data-target="#removeEmployeeModal" id="removeEmployee" class="btn btn-default">REMOVE</button>
+
+            <div class="alert alert-success alert-dismissible" role="alert" id="removeEmployeeSuccess" hidden>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have successfully removed an employee.
+            </div>
+        </div>
     </div>
 
-    <div id="editItemDiv">
-        <h1 id="editItemText">EDIT ITEM</h1>
+    <div id="editEmployeeDiv" class="displayDivs">
+        <h1 id="editEmployeeText" class="headerTexts">EDIT EMPLOYEE</h1>
 
-        <h3 id="selectItemLabel">Select Item:</h3>
-        <select id="editItemList"></select>
+        <div class="bigContainer">
+            <div class="container">
+                <label id="editSelectEmployeeLabel" class="editEmployeeLabels">Employee:</label>
+                <select id="editEmployeeList" class="form-control"></select>
+            </div>
 
-        <h3 id="editItemNameLabel">Item Name:</h3>
-        <input type="text" id="editItemNameInput">
+            <div class="container">
+                <label id="editEmployeeNameLabel" class="editEmployeeLabels">Employee Name:</label>
+                <input type="text" id="editEmployeeNameInput" class="form-control">
+            </div>
 
-        <h3 id="editItemPriceLabel">Item Price:</h3>
-        <input type="text" id="editItemPriceInput">
+            <div class="container">
+                <label id="editEmployeeIdLabel" class="editEmployeeLabels">Employee ID:</label>
+                <input type="text" id="editEmployeeIdInput" class="form-control">
+            </div>
 
-        <button id="editItemSave">SAVE</button>
+            <div class="container">
+                <label id="editEmployeePasswordLabel" class="editEmployeeLabels">Password:</label>
+                <input type="password" id="editEmployeePasswordInput" class="form-control">
+            </div>
+
+            <button id="editEmployeeSave" class="btn btn-default">SAVE</button>
+
+            <div class="alert alert-success alert-dismissible" role="alert" id="editEmployeeSuccess" hidden>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Success!</strong> You have successfully edited an employee.
+            </div>
+        </div>
     </div>
 
-    <div id="addEmployeeDiv">
-        <h1 id="addEmployeeText">ADD EMPLOYEE</h1>
+    <div class="modal fade" tabindex="-1" role="dialog" id="removeItemModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Remove Item</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this item?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="alert" id="removeItemSave">Remove</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
-        <h3 id="addEmployeeNameLabel">Employee Name:</h3>
-        <input type="text" id="addEmployeeNameInput">
-
-        <h3 id="addEmployeeIdLabel">Employee ID:</h3>
-        <input type="text" id="addEmployeeIdInput">
-
-        <h3 id="selectPositionLabel">Position:</h3>
-        <select id="selectPositionList">
-            <option value="a">Admin</option>
-            <option value="c">Cook</option>
-        </select>
-
-        <h3 id="addEmployeePasswordLabel">Password:</h3>
-        <input type="password" id="addEmployeePasswordInput">
-
-        <button id="addEmployeeSave">SAVE</button>
-    </div>
-
-    <div id="removeEmployeeDiv">
-        <h1 id="removeEmployeeText">REMOVE EMPLOYEE</h1>
-
-        <h3 id="removeSelectEmployeeLabel">Employee Name:</h3>
-        <select id="removeEmployeeList">
-        </select>
-
-        <button id="removeEmployeeSave">REMOVE</button>
-    </div>
-
-    <div id="editEmployeeDiv">
-        <h1 id="editEmployeeText">EDIT EMPLOYEE</h1>
-
-        <h3 id="editSelectEmployeeLabel">Employee:</h3>
-        <select id="editEmployeeList"></select>
-
-        <h3 id="editEmployeeNameLabel">Employee Name:</h3>
-        <input type="text" id="editEmployeeNameInput">
-
-        <h3 id="editEmployeeIdLabel">Employee ID:</h3>
-        <input type="text" id="editEmployeeIdInput">
-
-        <h3 id="editEmployeePasswordLabel">Password:</h3>
-        <input type="password" id="editEmployeePasswordInput">
-
-        <button id="editEmployeeSave">SAVE</button>
-
-    </div>
+    <div class="modal fade" tabindex="-1" role="dialog" id="removeEmployeeModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Remove Item</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this employee?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="alert" id="removeEmployeeSave">Remove</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <script src='/scripts/adminbundle.js'></script>
 </body>

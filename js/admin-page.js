@@ -12,6 +12,8 @@ var addItemButton = document.getElementById("addItemButton"),
     editEmployeeDiv = document.getElementById("editEmployeeDiv"),
     addItemNameInput = document.getElementById("addItemNameInput"),
     addItemPriceInput = document.getElementById("addItemPriceInput"),
+    addItemImgInput = document.getElementById("addItemImgInput"),
+    selectItemTypeList = document.getElementById("selectItemTypeList"),
     addItemSave = document.getElementById("addItemSave"),
     removeItemList = document.getElementById("removeItemList"),
     removeItemSave = document.getElementById("removeItemSave"),
@@ -32,7 +34,6 @@ var addItemButton = document.getElementById("addItemButton"),
     editEmployeePasswordInput = document.getElementById("editEmployeePasswordInput"),
     editEmployeeSave = document.getElementById("editEmployeeSave"),
     openStoreButton = document.getElementById("openStoreButton"),
-    closeStoreButton = document.getElementById("closeStoreButton"),
     closeStoreButton = document.getElementById("closeStoreButton"),
     employeeName = document.getElementById("employeeName"),
     employeeId = document.getElementById("employeeId"),
@@ -195,8 +196,7 @@ $(document).ready(function(){
                 var admin = JSON.parse(resp.user);
 
                 //change values for employeeName and employeeId
-                employeeName.innerHTML = admin.name.toUpperCase();
-                employeeId.innerHTML = admin.emp_id;
+                employeeName.innerHTML = "Signed in as " + admin.name.toUpperCase();
             }
         }
     })
@@ -205,7 +205,6 @@ $(document).ready(function(){
 
 
 //**************************ADD ITEM******************************//
-//TODO [Patrick] : Add item settings still needs an image input (URL or File Upload)
 
 addItemSave.addEventListener("click", function(){
     $.ajax({
@@ -214,10 +213,13 @@ addItemSave.addEventListener("click", function(){
         data:{
             item_name: addItemNameInput.value,
             item_price: addItemPriceInput.value,
+            item_img: addItemImgInput.value,
+            item_type: selectItemTypeList.value,
             type: "create"
         },
         success:function(resp){
             console.log(resp);
+            $("#addItemSuccess").show().delay(3000).fadeOut();
         }
     })
 });
@@ -225,6 +227,7 @@ addItemSave.addEventListener("click", function(){
 //**************************REMOVE ITEM******************************//
 
 removeItemSave.addEventListener("click", function(){
+
     $.ajax({
         url:"/remove-item",
         type:"post",
@@ -234,6 +237,7 @@ removeItemSave.addEventListener("click", function(){
         },
         success:function(resp){
             console.log(resp);
+            $("#removeItemSuccess").show().delay(3000).fadeOut();
         }
     })
 });
@@ -254,6 +258,7 @@ editItemSave.addEventListener("click", function(){
         },
         success:function(resp){
             console.log(resp);
+            $("#editItemSuccess").show().delay(3000).fadeOut();
         }
     })
 });
@@ -273,6 +278,7 @@ addEmployeeSave.addEventListener("click", function(){
         },
         success:function(resp){
             console.log(resp);
+            $("#addEmployeeSuccess").show().delay(3000).fadeOut();
         }
     })
 });
@@ -289,12 +295,33 @@ removeEmployeeSave.addEventListener("click", function(){
         },
         success:function(resp){
             console.log(resp);
+            $("#removeEmployeeSuccess").show().delay(3000).fadeOut();
         }
     })
 });
 
 //**************************EDIT EMPLOYEE******************************//
-//TODO [Patrick] : Ajax to the server when user selects from the ddl and put corresponding values in each of the inputs
+
+editEmployeeList.addEventListener("change", function () {
+    $.ajax({
+        url:"/edit-employee",
+        type:"post",
+        data:{
+            employee_name: editEmployeeList.value,
+            type: "select"
+        },
+        success:function(resp){
+            console.log(resp);
+            if(resp.status == "Success"){
+                var employee = resp.user[0];
+
+                editEmployeeNameInput.value = employee.name;
+                editEmployeeIdInput.value = employee.emp_id;
+                editEmployeePasswordInput.value = employee.password;
+            }
+        }
+    })
+})
 
 editEmployeeSave.addEventListener("click", function(){
     $.ajax({
@@ -309,6 +336,7 @@ editEmployeeSave.addEventListener("click", function(){
         },
         success:function(resp){
             console.log(resp);
+            $("#editEmployeeSuccess").show().delay(3000).fadeOut();
         }
     })
 });
