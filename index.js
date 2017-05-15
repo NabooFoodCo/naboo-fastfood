@@ -25,7 +25,7 @@ io.on("connection", function(socket){
     });
 });
 
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:PASSWORD@localhost:5432/naboo";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:fireice27090362@localhost:5432/naboo";
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -45,10 +45,16 @@ app.use(session({
 
 var storeIsOpen = true;
 
+
+/**********************************TOTAL ORDERS************************************/
+
+var itemsSold ={};
+
 /**********************************CURRENT ORDERS************************************/
 
 var orders = {};
 var orderNum = 1;
+var dayTotal = 0;
 
 /**********************************ROOT FOLDERS*************************************/
 app.get("/", function(req, resp){
@@ -93,7 +99,7 @@ app.post("/menu/items", function(req, resp){
 });
 
 app.post("/menu/order", function(req,resp){
-    if(orderNum < 100){
+    if(orderNum < 5){
         orders[orderNum] = req.body.order;
         orderNum += 1;
     }
@@ -101,7 +107,11 @@ app.post("/menu/order", function(req,resp){
         orderNum = 1;
         orders[orderNum] = req.body.order;
     }
-    console.log(unmakeOrders);
+    Object.keys(red.body.order).forEach(function(key){
+        itemsSold[key] += key;
+    }
+    dayTotal += parseInt(req.body.totalCost);
+    console.log(dayTotal);
     console.log(orders);
     pg.connect(dbURL, function (err, client, done) {
         if (err) {
