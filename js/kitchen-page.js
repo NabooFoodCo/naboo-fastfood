@@ -314,6 +314,23 @@ function updatePrep(numToRemove,food) {
         }
     });
 }
+function updatebin(numToRemove,food) {
+    $.ajax({
+        url:"/updatebin",
+        type:"post",
+        data:{
+            status:"throw",
+            food:food,
+            numToRemove:numToRemove
+        },
+        success: function (resp) {
+            if (resp.status == "success"){
+                // location.reload();
+            }
+
+        }
+    });
+}
 
 function checkPrep() {
     $.ajax({
@@ -351,7 +368,7 @@ setInterval(function() {
 
     times.forEach(function(time) {
         if(Date.now()-time>=300000) {
-            updatePrep(1,prepItems[time]);
+            updatebin(1,prepItems[time]);
         }
     });
     location.reload();
@@ -413,3 +430,20 @@ function showPrep() {
     })
 
 }
+setInterval(function() {
+
+    $.ajax({
+        url: "/checkOrderChange",
+        type: "post",
+        data:{
+            status:"check"
+        },
+        success:function (resp) {
+            if(resp.orderBefore != resp.orderAfter){
+                location.reload();
+            }
+        }
+    })
+
+}, 1000);
+

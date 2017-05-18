@@ -1,7 +1,7 @@
 #showOption{
     position: fixed;
     bottom: 25px;
-    width: 30vw;
+    width: auto;
 }
 
 .showCata{
@@ -14,13 +14,19 @@
     position: fixed;
     bottom: 0;
     height: auto;
-    width: 95vw;
+    width: 98vw;
 }
 
 .itemsInMaking{
     display: inline-block;
     height:auto;
     width:10vw;
+}
+#prepared{
+    width: 15px;
+}
+#quantity{
+    width: 4vw;
 }
 
 #make{
@@ -40,11 +46,11 @@
     width: 95vw;
     height: auto;
     color: red;
-    /*display: inline-block;*/
 }
 #serveItem{
-    width:30vw;
+    width:45vw;
     height: auto;
+    font-size: small;
 }
 
 #prepBut{
