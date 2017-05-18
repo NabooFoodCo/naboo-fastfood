@@ -1,5 +1,6 @@
  {
-  "src_folders" : ["tests"],
+  "detailed_output": true,
+  "src_folders" : ["test"],
   "output_folder" : "reports",
   "custom_commands_path" : "",
   "custom_assertions_path" : "",
@@ -10,6 +11,11 @@
     "start_process" : false
   },
 
+  "test_workers": {
+    "enabled": true,
+    "workers": "auto"
+  }, 
+     
   "test_settings" : {
     "default" : {
       "selenium_port"  : 9515,
