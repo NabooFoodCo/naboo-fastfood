@@ -25,7 +25,7 @@ io.on("connection", function(socket){
     });
 });
 
-var dbURL = process.env.DATABASE_URL || "postgres://postgres:PASSWORD@localhost:5432/naboo";
+var dbURL = process.env.DATABASE_URL || "postgres://postgres:Jelapij8@localhost:5432/naboo";
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -396,8 +396,8 @@ app.post("/close-store", function(req, resp){
         resp.end("Success");
     })
 })
-/**********************************SALES*************************************/
-app.post("/get-sales", function(req, resp){
+/**********************************ITEMS SOLD*************************************/
+app.post("/get-items-sold", function(req, resp){
     pg.connect(dbURL, function (err, client, done) {
         if (err) {
             console.log(err);
@@ -437,11 +437,53 @@ app.post("/get-dates", function(req, resp){
     })
 })
 
+/**********************************SALES*************************************/
+app.post("/get-dates-sales", function(req, resp){
+    pg.connect(dbURL, function (err, client, done) {
+        if (err) {
+            console.log(err);
+            return false;
+        }
+
+        client.query("SELECT DISTINCT date FROM orders", function(err,result){
+            done();
+            if(err){
+                return false;
+            }
+            resp.send({
+                status: "Success",
+                dates: result.rows
+            });
+        })
+    })
+})
+
+app.post("/get-sales", function(req, resp){
+    pg.connect(dbURL, function (err, client, done) {
+        if (err) {
+            console.log(err);
+            return false;
+        }
+
+        client.query("SELECT * FROM orders WHERE date = $1", [req.body.date_selected], function(err,result){
+            done();
+            if(err){
+                return false;
+            }
+            resp.send({
+                status: "Success",
+                sales: result.rows
+            });
+        })
+    })
+})
+
 /**********************************SEND USER INFO*************************************/
 app.post("/get-user", function(req, resp){
     resp.send({
         status: "Success",
-        user: JSON.stringify(req.session.user)
+        user: JSON.stringify(req.session.user),
+        store: storeIsOpen
     })
 });
 

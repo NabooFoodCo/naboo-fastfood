@@ -1,13 +1,29 @@
 /**************DIV CLASSES**************/
 .displayDivs {
-    background: linear-gradient(#DBDDDE, #898C90);
     width: 50vw;
-    height: 70vh;
+    height: 80vh;
     position: absolute;
     margin:25px 0 0 25vw;
-    border-radius: 10px 50px 10px 50px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: none;
+}
+
+.headerDivs {
+    background: linear-gradient(#4A4A4A, #2B2B2B);
+    width: 50vw;
+    height: 15vh;
+    position: absolute;
+    border-radius: 10px 50px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.lowerDivs {
+    background: linear-gradient(#4A4A4A, #2B2B2B);
+    width: 50vw;
+    height: 60vh;
+    position: absolute;
+    margin:120px 0 0 0;
+    border-radius: 10px 10px 10px 50px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .container{
@@ -16,7 +32,7 @@
 
 .bigContainer {
     width: 60%;
-    margin: 0 auto;
+    margin: 50px 0 0 150px;
 }
 
 /**************TEXT CLASSES**************/
@@ -24,32 +40,83 @@
     margin-top: 20px;
     margin-bottom: 5vh;
     text-align: center;
-    font-weight: 900;
+    color: white;
+    text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0,0,0,.1),
+    0 0 5px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.3),
+    0 3px 5px rgba(0,0,0,.2),
+    0 5px 10px rgba(0,0,0,.25),
+    0 10px 10px rgba(0,0,0,.2),
+    0 20px 20px rgba(0,0,0,.15);
+    font-size:60px;
+    font-family: 'Montserrat', sans-serif;
 }
+
+/**************NAV BAR**************/
+#nav {
+    border-radius: 0px;
+}
+
+#logoBadge{
+    margin-top: -30px;
+}
+#employeeName, #addItemButton, #removeItemButton, #editItemButton, #addEmployeeButton, #removeEmployeeButton, #editEmployeeButton, #checkItemsSoldButton, #checkSalesButton, #manageItems, #manageEmployees{
+    font-family: 'Raleway', sans-serif;
+}
+
+#addItemButton, #removeItemButton, #editItemButton, #addEmployeeButton, #removeEmployeeButton, #editEmployeeButton, #checkItemsSoldButton, #checkSalesButton:hover{
+    cursor: pointer;
+}
+
 /**************ADMIN DIV**************/
 
 #adminSettingsDiv {
-    background: linear-gradient(#DBDDDE, #898C90);
     width: 50vw;
     height: 70vh;
     position: absolute;
     margin:25px 0 0 25vw;
-    border-radius: 10px 50px 10px 50px;
+    display: block;
+
+}
+
+#headerDiv {
+    background: linear-gradient(#4A4A4A, #2B2B2B);
+    width: 50vw;
+    height: 15vh;
+    position: absolute;
+    border-radius: 10px 50px 10px 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+}
+
+#buttonBackground{
+    background: linear-gradient(#4A4A4A, #2B2B2B);
+    width: 50vw;
+    height: 40vh;
+    position: absolute;
+    margin:120px 0 0 0;
+    border-radius: 10px 10px 10px 50px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: block;
 }
 
 #openStoreButton, #closeStoreButton {
     width: 20vw;
+    margin-bottom: 10px;
 }
 
 #buttonContainer {
     width: 40%;
-    margin: 0 auto;
+    margin: 80px 0 0 225px;
 }
 
-/**************SALES DIV**************/
-#checkSalesDiv {
+/**************ITEMS SOLD DIV**************/
+#checkItemsSoldDiv {
     display: none;
 }
 
@@ -68,16 +135,54 @@
     width: 20vw;
 }
 
+#displayTable {
+    margin-top: 20px;
+}
 
 #right {
     margin-left: 50px;
 }
 
+/**************SALES DIV**************/
+#checkSalesDiv {
+    display: none;
+}
+
+#datesListSales {
+    margin-left: 20px;
+    width: 20vw;
+    display:inline-block;
+}
+
+#checkSales, #leftContainer, #rightContainer, #displayTotalOrders, #displayTotalSales {
+    display:inline-block;
+}
+
+#searchBarSales {
+    display:inline-block;
+    width: 20vw;
+}
+
+#rightContainer, #displayTotalOrders {
+    margin-left: 50px;
+}
+
+#displayTotalSales {
+    margin-left: 20px;
+    font-family: 'Raleway', sans-serif;
+
+}
+#displayTotalOrders{
+    font-family: 'Raleway', sans-serif;
+}
 /**************ADD ITEM DIV**************/
 .addItemLabels {
     margin: 10px 0 0 0;
     display: inline-block;
     min-width: 8vw;
+    color: white;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
 }
 
 #addItemNameInput, #addItemPriceInput, #addItemImgInput, #selectItemTypeList {
@@ -95,6 +200,9 @@
 #removeItemNameLabel {
     margin: 10px 0 0 0;
     display: inline-block;
+    color: white;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
 }
 
 #removeItemList {
@@ -113,6 +221,9 @@
     margin: 10px 0 0 0;
     display: inline-block;
     min-width: 8vw;
+    color: white;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
 }
 
 #editItemList, #editItemNameInput, #editItemPriceInput, #editItemImgInput, #editItemTypeList {
@@ -131,6 +242,9 @@
     margin: 10px 0 0 20px;
     display: inline-block;
     min-width: 8vw;
+    color: white;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
 }
 
 #selectPositionList, #addEmployeeNameInput, #addEmployeeIdInput, #addEmployeePasswordInput {
@@ -148,6 +262,9 @@
 #removeSelectEmployeeLabel {
     margin: 10px 0 0 0;
     display: inline-block;
+    color: white;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
 }
 
 #removeEmployeeList {
@@ -166,6 +283,9 @@
     margin: 10px 0 0 0;
     display: inline-block;
     min-width: 8vw;
+    color: white;
+    font-weight: 100;
+    font-family: 'Raleway', sans-serif;
 }
 
 #editEmployeeList, #editEmployeeNameInput, #editEmployeeIdInput, #editEmployeePositionList, #editEmployeePasswordInput {
