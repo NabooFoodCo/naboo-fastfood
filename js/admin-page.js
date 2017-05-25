@@ -253,7 +253,7 @@ editEmployeeButton.addEventListener("click", function(){
         success:function(resp){
             if(resp.status == "Success"){
                 console.log(resp.users);
-                var employees = JSON.parse(resp.users);
+                var employees = resp.users;
 
                 var chooseEmployee = document.createElement("option");
                 chooseEmployee.value = "choose";
