@@ -121,7 +121,7 @@ app.post("/menu/order", function(req,resp){
     fakeOrder = false;
     orderQuant = 0;
     Object.keys(req.body.order).forEach(function(key){
-        orderQuant += req.body.order[key];
+        orderQuant += parseInt(req.body.order[key]);
         if(req.body.order[key] > maxIndividualItemOrder || req.body.order[key] < 0){
             fakeOrder = true;
         }

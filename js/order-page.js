@@ -290,7 +290,7 @@ $(document).ready(function(){
             }
         }
     });
-    var regExS = /^[a-z ,.'-]{2,25}$/i
+    var regExS = /^[a-z ]{2,25}$/i
     document.getElementById("checkout").addEventListener("click",function(){
         var name = document.getElementById("cusName");
         var totalCost = parseInt(document.getElementById("total").innerHTML);
