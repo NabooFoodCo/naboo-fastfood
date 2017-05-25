@@ -1,10 +1,10 @@
 $(document).ready(function(){
     var img1 = new Image();
-    img1.src = "/pics/Massive Fly Poutine Poster.jpg";
+    img1.src = "/pics/Gungan Special Massive Fly Poutine.png";
     var img2 = new Image();
-    img2.src = "/pics/Falumpaset Meat Skewer Poster.jpg";
+    img2.src = "/pics/Falumpaset Meat Skewer.png";
     var img3 = new Image();
-    img3.src = "/pics/Aquatic plant Salad Poster.jpg";
+    img3.src = "/pics/Aquatic plant Salad.png";
     var curImg = 1;
     var timeOutS;
     var running = 0;
