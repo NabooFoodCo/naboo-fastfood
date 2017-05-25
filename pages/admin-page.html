@@ -34,8 +34,8 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a id="checkItemsSoldButton">Items Sold</a></li>
-                    <li><a id="checkSalesButton">Sales</a></li>
+                    <li id="checkItemsSoldLI"><a id="checkItemsSoldButton">Items Sold</a></li>
+                    <li id="checkSalesLI"><a id="checkSalesButton">Sales</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="manageItems">Manage items <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -55,7 +55,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <p class="navbar-text navbar-left" id="employeeName">EMPLOYEE</p>
-                    <button type="button" class="btn btn-default navbar-btn" id="logoutButton">Log out</button>
+                    <button type="button" class="btn btn-danger navbar-btn" id="logoutButton">Log out</button>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -67,8 +67,12 @@
         </div>
         <div id="buttonBackground">
             <div id="buttonContainer">
-                <button type="button" class="btn btn-primary btn-lg btn-block" id="openStoreButton">Open Store</button>
-                <button type="button" class="btn btn-default btn-lg btn-block" id="closeStoreButton">Close Store</button>
+                <button type="button" class="btn btn-success btn-lg btn-block" id="openStoreButton">
+                    <span class="glyphicon glyphicon-ok-circle glyphicon-align-left" aria-hidden="true"></span>   Open Store
+                </button>
+                <button type="button" class="btn btn-danger btn-lg btn-block" id="closeStoreButton">
+                    <span class="glyphicon glyphicon-ban-circle glyphicon-align-left" aria-hidden="true"></span>   Close Store
+                </button>
             </div>
         </div>
     </div>
@@ -76,33 +80,55 @@
     <div id="checkItemsSoldDiv">
         <div id="left">
             <select id="datesList" class="form-control"></select>
-            <button class="btn btn-default" id="checkButton">Check</button>
+            <button class="btn btn-success" id="checkButton">Check</button>
         </div>
 
         <div id="right">
             <label>Search date:</label>
             <input type="date" id="searchBar" class="form-control" placeholder="yyyy-mm-dd">
-            <button id="searchDate" class="btn btn-default">Search</button>
+            <button id="searchDate" class="btn btn-primary">Search</button>
         </div>
+
+        <div class="alert alert-success alert-dismissible" role="alert" id="checkItemsSuccess" hidden>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> All items sold on this date is now displayed.
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" role="alert" id="checkItemsFailed" hidden>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> No transactions were made on this date.
+        </div>
+
         <div id="displayTable"></div>
     </div>
 
     <div id="checkSalesDiv">
         <div id="leftContainer">
             <select id="datesListSales" class="form-control"></select>
-            <button class="btn btn-default" id="checkSales">Check</button>
+            <button class="btn btn-success" id="checkSales">Check</button>
         </div>
 
         <div id="rightContainer">
             <label>Search date:</label>
             <input type='date' class="form-control" id="searchBarSales"/>
-            <button id="searchDateSales" class="btn btn-default">Search</button>
+            <button id="searchDateSales" class="btn btn-primary">Search</button>
         </div>
 
         <div>
             <h3 id="displayTotalSales"></h3>
             <h3 id="displayTotalOrders"></h3>
         </div>
+
+        <div class="alert alert-success alert-dismissible" role="alert" id="checkSalesSuccess" hidden>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> All transactions made on this date is now displayed.
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" role="alert" id="checkSalesFailed" hidden>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Error!</strong> No transactions were made on this date.
+        </div>
+
         <div id="displayTableSales"></div>
     </div>
 
@@ -140,7 +166,7 @@
                     </select>
                 </div>
 
-                <button id="addItemSave" class="btn btn-default">SAVE</button>
+                <button id="addItemSave" class="btn btn-success">SAVE</button>
                 <div class="alert alert-success alert-dismissible" role="alert" id="addItemSuccess" hidden>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <strong>Success!</strong> You have successfully added an item.
@@ -150,13 +176,6 @@
                     <strong>Error!</strong> Please make sure all the inputs are valid.
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- Generated markup by the plugin -->
-    <div class="tooltip tooltip-top" role="tooltip" id="names">
-        <div class="tooltip-arrow"></div>
-        <div class="tooltip-inner">
-            Some tooltip text!
         </div>
     </div>
 
@@ -171,7 +190,7 @@
                     <label id="removeItemNameLabel">Item Name:</label>
                     <select id="removeItemList" class="form-control"></select>
                 </div>
-                <button class="btn btn-default" data-toggle="modal" data-target="#removeItemModal" id="removeItem">REMOVE</button>
+                <button class="btn btn-danger" data-toggle="modal" data-target="#removeItemModal" id="removeItem">REMOVE</button>
 
                 <div class="alert alert-success alert-dismissible" role="alert" id="removeItemSuccess" hidden>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -220,7 +239,7 @@
                     </select>
                 </div>
 
-                <button id="editItemSave" class="btn btn-default">SAVE</button>
+                <button id="editItemSave" class="btn btn-success">SAVE</button>
         </div>
 
             <div class="alert alert-success alert-dismissible" role="alert" id="editItemSuccess" hidden>
@@ -264,7 +283,7 @@
                     <label id="addEmployeePasswordLabel" class="addEmployeeLabels">Password:</label>
                     <input type="password" title="Only alphanumeric characters are allowed" id="addEmployeePasswordInput" class="form-control">
                 </div>
-                <button id="addEmployeeSave" class="btn btn-default">SAVE</button>
+                <button id="addEmployeeSave" class="btn btn-success">SAVE</button>
 
 
                 <div class="alert alert-success alert-dismissible" role="alert" id="addEmployeeSuccess" hidden>
@@ -297,7 +316,7 @@
                     <select id="removeEmployeeList" class="form-control"></select>
                 </div>
 
-                <button data-toggle="modal" data-target="#removeEmployeeModal" id="removeEmployee" class="btn btn-default">REMOVE</button>
+                <button data-toggle="modal" data-target="#removeEmployeeModal" id="removeEmployee" class="btn btn-danger">REMOVE</button>
 
                 <div class="alert alert-success alert-dismissible" role="alert" id="removeEmployeeSuccess" hidden>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -342,7 +361,7 @@
                     <input type="password" title="Only alphanumeric characters are allowed" id="editEmployeePasswordInput" class="form-control">
                 </div>
 
-                <button id="editEmployeeSave" class="btn btn-default">SAVE</button>
+                <button id="editEmployeeSave" class="btn btn-success">SAVE</button>
 
                 <div class="alert alert-success alert-dismissible" role="alert" id="editEmployeeSuccess" hidden>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

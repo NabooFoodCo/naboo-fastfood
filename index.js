@@ -134,14 +134,8 @@ app.post("/menu/order", function(req,resp){
     }
     else {
         if(Object.keys(orders).length < maxOrders){
-            if(orderNum < maxOrders + 1){
-                orders[orderNum] = req.body.order;
-                orderNum += 1;
-            }
-            else {
-                orderNum = 1;
-                orders[orderNum] = req.body.order;
-            }
+            orders[orderNum] = req.body.order;
+            orderNum += 1;
             Object.keys(req.body.order).forEach(function(key){
                 if(itemsSold[key]){
                     itemsSold[key] += parseInt(req.body.order[key]);
@@ -354,6 +348,7 @@ app.post("/open-store", function(req, resp){
 //CLOSE STORE
 app.post("/close-store", function(req, resp){
     storeIsOpen = false;
+    orderNum = 1;
     pg.connect(dbURL, function (err, client, done) {
         if (err) {
             console.log(err);
@@ -424,7 +419,7 @@ app.post("/get-dates", function(req, resp){
             return false;
         }
 
-        client.query("SELECT DISTINCT date FROM foodsales", function(err,result){
+        client.query("SELECT DISTINCT date FROM foodsales ORDER BY date", function(err,result){
             done();
             if(err){
                 return false;
@@ -445,7 +440,7 @@ app.post("/get-dates-sales", function(req, resp){
             return false;
         }
 
-        client.query("SELECT DISTINCT date FROM orders", function(err,result){
+        client.query("SELECT DISTINCT date FROM orders ORDER BY date", function(err,result){
             done();
             if(err){
                 return false;

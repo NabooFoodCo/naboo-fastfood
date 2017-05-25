@@ -58,7 +58,7 @@ var addItemButton = document.getElementById("addItemButton"),
     displayTableSales = document.getElementById("displayTableSales"),
     displayTotalSales = document.getElementById("displayTotalSales"),
     displayTotalOrders = document.getElementById("displayTotalOrders"),
-    regExNames = /^[a-zA-Z]{3,50}$/,
+    regExNames = /^[a-zA-Z ]{3,50}$/,
     regExURL = /\.(jpg|png|gif)$/,
     regExPrice = /^[1-9][0-9]{1,3}$/,
     regExEmpId = /^[A][0-9]{1,3}$/,
@@ -84,6 +84,10 @@ addItemButton.addEventListener("click", function(){
     checkItemsSoldDiv.style.display = "none";
     checkSalesDiv.style.display = "none";
     adminSettingsDiv.style.display = "none";
+
+    //change active buttons from nav bar
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "";
 });
 
 removeItemButton.addEventListener("click", function(){
@@ -96,6 +100,10 @@ removeItemButton.addEventListener("click", function(){
     checkItemsSoldDiv.style.display = "none";
     adminSettingsDiv.style.display = "none";
     checkSalesDiv.style.display = "none";
+
+    //change active buttons from nav bar
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "";
 
     //*****************************DROP DOWN LIST**********************************//
 
@@ -129,6 +137,10 @@ editItemButton.addEventListener("click", function(){
     checkItemsSoldDiv.style.display = "none";
     adminSettingsDiv.style.display = "none";
     checkSalesDiv.style.display = "none";
+
+    //change active buttons from nav bar
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "";
 
     //*****************************DROP DOWN LIST**********************************//
 
@@ -172,6 +184,10 @@ addEmployeeButton.addEventListener("click", function(){
     checkItemsSoldDiv.style.display = "none";
     adminSettingsDiv.style.display = "none";
     checkSalesDiv.style.display = "none";
+
+    //change active buttons from nav bar
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "";
 });
 
 removeEmployeeButton.addEventListener("click", function(){
@@ -185,6 +201,9 @@ removeEmployeeButton.addEventListener("click", function(){
     adminSettingsDiv.style.display = "none";
     checkSalesDiv.style.display = "none";
 
+    //change active buttons from nav bar
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "";
 
     //*****************************DROP DOWN LIST**********************************//
 
@@ -219,6 +238,10 @@ editEmployeeButton.addEventListener("click", function(){
     checkItemsSoldDiv.style.display = "none";
     adminSettingsDiv.style.display = "none";
     checkSalesDiv.style.display = "none";
+
+    //change active buttons from nav bar
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "";
 
     //*****************************DROP DOWN LIST**********************************//
 
@@ -264,6 +287,11 @@ checkItemsSoldButton.addEventListener("click", function(){
     checkItemsSoldDiv.style.display = "block";
     checkSalesDiv.style.display = "none";
 
+    //set text to active
+    checkSalesButton.style.textShadow = "";
+    checkItemsSoldButton.style.textShadow = "0 0 3px limegreen";
+
+
     //ajax to server to get the dates from the db
     datesList.innerHTML = "";
     displayTable.innerHTML = "";
@@ -295,6 +323,9 @@ checkSalesButton.addEventListener("click", function(){
     adminSettingsDiv.style.display = "none";
     checkItemsSoldDiv.style.display = "none";
     checkSalesDiv.style.display = "block";
+
+    checkSalesButton.style.textShadow = "0 0 3px limegreen";
+    checkItemsSoldButton.style.textShadow = "";
 
     //ajax to server to get the dates from the db
     datesListSales.innerHTML = "";
@@ -362,6 +393,7 @@ checkButton.addEventListener("click", function(){
         success:function(resp){
             if(resp.status = "Success"){
                 console.log(resp);
+                $("#checkItemsSuccess").show().delay(3000).fadeOut();
                 var tableValues = resp.sales;
 
                 //create the elements
@@ -417,7 +449,7 @@ searchDate.addEventListener("click", function(){
     }
 
     if(!dateExists){
-        alert("No transactions were made on this date")
+        $("#checkItemsFailed").show().delay(3000).fadeOut();
     }
 
 });
@@ -435,6 +467,7 @@ checkSales.addEventListener("click", function(){
         success:function(resp){
             if(resp.status = "Success"){
                 console.log(resp);
+                $("#checkSalesSuccess").show().delay(3000).fadeOut();
                 var tableValues = resp.sales;
                 var totalSales = 0;
                 var totalOrders = 0;
@@ -498,7 +531,7 @@ searchDateSales.addEventListener("click", function(){
     }
 
     if(!dateExists) {
-        alert("No transactions were made on this date")
+        $("#checkSalesFailed").show().delay(3000).fadeOut();
     }
 });
 
