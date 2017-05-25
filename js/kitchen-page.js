@@ -390,6 +390,8 @@ function showBin(){
                 });
 
                 var anItem = document.createElement("div");
+                anItem.style.fontFamily = "'Oswald', sans-serif";
+                anItem.style.fontSize = "20px";
                 anItem.innerHTML = foodName+" : "+ foodQty +"<br>";
 
                 document.body.appendChild(anItem);
@@ -418,6 +420,8 @@ function showPrep() {
                 });
 
                 var anItem = document.createElement("div");
+                anItem.style.fontFamily = "'Oswald', sans-serif";
+                anItem.style.fontSize = "20px";
                 anItem.innerHTML = foodName+" : "+ foodQty +"<br>";
 
                 document.body.appendChild(anItem);

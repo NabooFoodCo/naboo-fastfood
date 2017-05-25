@@ -215,7 +215,7 @@ removeEmployeeButton.addEventListener("click", function(){
         success:function(resp){
             if(resp.status == "Success"){
                 console.log(resp.users);
-                var employees = JSON.parse(resp.users);
+                var employees = resp.users;
 
                 for(i=0;i<employees.length;i++){
                     var employeeName = document.createElement("option");

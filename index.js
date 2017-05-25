@@ -490,14 +490,14 @@ app.post("/get-employees", function(req, resp){
             return false;
         }
 
-        client.query("SELECT name FROM users", function(err,result){
+        client.query("SELECT name FROM users WHERE type = 'c'", function(err,result){
             done();
             if(err){
                 return false;
             }
             resp.send({
                 status: "Success",
-                users: JSON.stringify(result.rows)
+                users: result.rows
             });
         })
     })
